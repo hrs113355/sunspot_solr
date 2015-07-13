@@ -57,6 +57,10 @@ opts = OptionParser.new do |opts|
   opts.on '--min-memory=MEMORY', 'Specify the initial size of the memory allocation pool' do |mm|
     server.min_memory = mm
   end
+
+  opts.on '--java-agent=NEWRELIC_AGENT', 'Specify the initial size of the memory allocation pool' do |ja|
+    server.java_agent = ja
+  end
 end
 
 opts.parse!

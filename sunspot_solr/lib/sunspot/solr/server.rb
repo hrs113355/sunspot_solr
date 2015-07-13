@@ -19,7 +19,7 @@ module Sunspot
 
       LOG_LEVELS = Set['SEVERE', 'WARNING', 'INFO', 'CONFIG', 'FINE', 'FINER', 'FINEST']
 
-      attr_accessor :min_memory, :max_memory, :bind_address, :port, :log_file
+      attr_accessor :min_memory, :max_memory, :bind_address, :port, :log_file, :java_agent
 
       attr_writer :pid_dir, :pid_file, :solr_data_dir, :solr_home, :solr_jar
 
@@ -92,6 +92,7 @@ module Sunspot
         bootstrap
 
         command = ['java']
+        command << "-javaagent:#{java_agent}" if java_agent
         command << "-Xms#{min_memory}" if min_memory
         command << "-Xmx#{max_memory}" if max_memory
         command << "-Djetty.port=#{port}" if port
